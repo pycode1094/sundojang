@@ -2,7 +2,7 @@
 
 LPBF 공정 파라미터 개발부터 조선·발사체 부품 양산까지 해 본 공정기술 엔지니어 장선도의 포트폴리오 (For Hanwha Engine).
 
-- **배포 URL:** https://SITE_URL/ ← 배포 후 교체
+- **배포 URL:** https://pycode1094.github.io/sundojang/
 - 원본: https://sites.google.com/view/sjforhanwhaengine/홈
 - 스택: HTML + CSS + Vanilla JS (빌드 도구·외부 JS 라이브러리 없음), 콘텐츠는 `data/*.json`
 
@@ -81,7 +81,7 @@ git push -u origin main
 GitHub 저장소 → **Settings → Pages → Build and deployment**: Source `Deploy from a branch`, Branch `main` / `/ (root)` → Save.
 1~2분 뒤 `https://<계정>.github.io/<repo>/` 에서 열린다.
 
-배포 URL 이 정해지면 `index.html` 의 `og:url`, `og:image` 와 이 README 의 `SITE_URL` 을 실제 주소로 바꾼다
+배포 URL 이 정해지면 `index.html` 의 `og:url`, `og:image` 를 실제 주소로 바꾼다
 (카카오톡 미리보기는 og:image 가 **절대 URL** 이어야 뜬다). 카카오톡 캐시 갱신: https://developers.kakao.com/tool/debugger/sharing
 
 ## 완료 기준 체크리스트
