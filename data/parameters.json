@@ -1,0 +1,217 @@
+[
+  {
+    "id": "param-development",
+    "title": "Parameter development",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/param-development-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "thermal-shrink-line",
+    "title": "Thermal shrink line 확인용 Test build",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/thermal-shrink-line-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "delay-study",
+    "title": "Delay Study",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/delay-study-1.jpg",
+      "assets/img/delay-study-2.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "param-custom-no-editor",
+    "title": "파라미터 에디터 없이 파라미터 커스텀",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/param-custom-no-editor-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "magnetic-material",
+    "title": "자성재료 기본 공정 개발",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터",
+      "소재"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/magnetic-material-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "support-test",
+    "title": "Support test",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터",
+      "서포트"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/support-test-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "toolpath-function",
+    "title": "Tool path function study",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/toolpath-function-1.jpg",
+      "assets/img/toolpath-function-2.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "low-angle-param",
+    "title": "저각 파라미터 개발",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/low-angle-param-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "build-of-month",
+    "title": "Build of Month (한국적층제조사용자그룹)",
+    "category": "parameter",
+    "period": "2023.11",
+    "tags": [
+      "LPBF",
+      "파라미터",
+      "KAMUG"
+    ],
+    "summary": "한국적층제조사용자그룹(KAMUG) Build of Month 2023. Nov. Vol.01 제1호 선정",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/build-of-month-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "thin-wall",
+    "title": "Thin wall study",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/thin-wall-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "cad-support",
+    "title": "전용 CAD 서포트 개발",
+    "category": "parameter",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "파라미터",
+      "서포트"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/cad-support-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  }
+]

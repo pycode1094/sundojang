@@ -1,0 +1,119 @@
+[
+  {
+    "id": "lattice-computational",
+    "title": "Lattice & Computational design study",
+    "category": "personal",
+    "period": "",
+    "tags": [
+      "DfAM",
+      "Lattice",
+      "Computational design"
+    ],
+    "summary": "Diamond, D-skeletal, G-skeletal, W-skeletal, P-skeletal, Gyroid, Lidinoid 등 격자 구조 설계 스터디",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/lattice-computational-1.jpg",
+      "assets/img/lattice-computational-2.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "arduino-cnc",
+    "title": "CNC practice based on Arduino platform",
+    "category": "personal",
+    "period": "",
+    "tags": [
+      "CNC",
+      "Arduino"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/arduino-cnc-1.jpg"
+    ],
+    "youtube": "cmlJejiJuoo",
+    "nda": false,
+    "featured": false,
+    "poster": "assets/img/arduino-cnc-yt.webp"
+  },
+  {
+    "id": "g-skeletal",
+    "title": "Lattice study - G-skeletal",
+    "category": "personal",
+    "period": "",
+    "tags": [
+      "DfAM",
+      "Lattice"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/g-skeletal-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "pen-computational",
+    "title": "Computational design study — 볼펜 및 볼펜 받침",
+    "category": "personal",
+    "period": "",
+    "tags": [
+      "DfAM",
+      "Computational design"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/pen-computational-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "scan-casting",
+    "title": "3D 스캐닝 및 캐스팅",
+    "category": "personal",
+    "period": "",
+    "tags": [
+      "3D 스캐닝",
+      "주조"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/scan-casting-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "supportless-tank",
+    "title": "서포트 없이 구형 탱크 제작",
+    "category": "personal",
+    "period": "",
+    "tags": [
+      "DfAM"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/supportless-tank-1.jpg",
+      "assets/img/supportless-tank-2.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  }
+]

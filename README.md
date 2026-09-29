@@ -1,0 +1,97 @@
+# 장선도 | 공정기술 엔지니어 포트폴리오
+
+LPBF 공정 파라미터 개발부터 조선·발사체 부품 양산까지 해 본 공정기술 엔지니어 장선도의 포트폴리오 (For Hanwha Engine).
+
+- **배포 URL:** https://SITE_URL/ ← 배포 후 교체
+- 원본: https://sites.google.com/view/sjforhanwhaengine/홈
+- 스택: HTML + CSS + Vanilla JS (빌드 도구·외부 JS 라이브러리 없음), 콘텐츠는 `data/*.json`
+
+## 폴더 구조
+
+```
+├── index.html            # 뼈대만 있음. 콘텐츠는 모두 JSON 에서 렌더링
+├── css/style.css
+├── js/main.js
+├── data/
+│   ├── profile.json      # 이름, 직무, 한 줄 소개, 연락처, 경력 기간, 이력서 경로
+│   ├── projects.json     # 프로젝트 12건
+│   ├── parameters.json   # 파라미터 개발 11건
+│   ├── certs.json        # 교육·수료 9건, 수상 2건
+│   ├── personal.json     # 개인 작품 6건
+│   ├── images.json       # (자동 생성) 실제 존재하는 이미지 목록
+│   └── bundle.js         # (자동 생성) file:// 로 열 때 쓰는 데이터 번들
+├── assets/
+│   ├── img/              # {id}-1.webp, {id}-1.thumb.webp ...
+│   ├── og-image.png      # 링크 공유 미리보기 이미지
+│   └── favicon.svg
+└── scripts/
+    ├── build_data.py     # 항목 수 검증 + TODO 목록 + images.json/bundle.js 생성
+    ├── convert_webp.py   # JPG/PNG → WebP 변환 + JSON 경로 갱신 (+ build_data 실행)
+    └── make_og_image.py  # OG 이미지 재생성
+```
+
+## 로컬에서 보기
+
+- `index.html` 더블클릭 → `data/bundle.js` 로 표시됨 (JSON 수정 후엔 `python scripts/build_data.py` 다시 실행)
+- 또는 로컬 서버: `python -m http.server 8000` → http://localhost:8000
+
+## 콘텐츠 수정
+
+`data/projects.json` 등의 항목 스키마:
+
+| 필드 | 설명 |
+|---|---|
+| `summary` | 문제·상황 (모달의 **S·T**) — 카드에도 1줄 표시 |
+| `role` | 접근·역할 (모달의 **A**) |
+| `result` | 결과, 가능하면 수치로 (모달의 **R**) |
+| `images` | `assets/img/{id}-1.jpg` 형식. 파일이 없으면 placeholder 로 표시 |
+| `youtube` | YouTube 영상 ID. 모달에서 클릭할 때만 iframe 로드 |
+| `poster` | 영상 썸네일 (로컬 파일, YouTube 요청 없이 표시) |
+| `nda` | `true` 면 "NDA · 대체 이미지" 배지 + `ndaNote` 안내문 |
+| `featured` | `true` 면 상단 Featured 섹션에 표시 (`featuredOrder` 순, `featuredReason` 은 강조 문구) |
+
+- 값이 `"TODO"` 이거나 비어 있으면 화면에 **표시하지 않는다** (STAR 가 전부 비면 "면접에서 설명" 문구로 대체).
+- 남은 TODO 확인: `python scripts/build_data.py`
+- 필터 태그(LPBF / DfAM / 파라미터 / 조선 / 발사체 / 엔진)는 `js/main.js` 의 `FILTER_TAGS`.
+- 이력서 PDF: `assets/resume.pdf` 를 넣고 `profile.json` 의 `"resume": "assets/resume.pdf"` 로 지정하면 버튼이 나타난다.
+
+## 이미지 추가
+
+원본 Google Sites 이미지는 자동 다운로드가 막혀 있어(403) 직접 저장해야 한다.
+
+1. 원본 사이트에서 이미지를 저장해 `assets/img/{id}-1.jpg`, `{id}-2.jpg` … 로 이름 붙이기
+   (id 는 JSON 의 `id`. 예: `manifold-norway-1.jpg`, `cert-lpbf-1.jpg`)
+2. `pip install pillow` (최초 1회)
+3. `python scripts/convert_webp.py` → WebP(1600px) + 썸네일(720px) 생성, JSON 경로를 `.webp` 로 교체, 원본은 `assets/img/_original/` (git 제외)
+
+> ⚠️ 성적·졸업·병적증명서, 운전면허증 등 개인 증빙 서류는 올리지 않는다 ("요청 시 제출 가능"으로만 표기).
+
+## 검색 노출
+
+현재 **비공개(링크 공유 전용)** — `index.html` 의 `<meta name="robots" content="noindex, nofollow">`.
+검색에 노출하려면 이 줄을 삭제한다. (noindex 상태에서는 Lighthouse SEO 점수가 63 으로 나오는 것이 정상)
+
+## 배포 (GitHub Pages)
+
+```bash
+git remote add origin https://github.com/<계정>/<repo>.git
+git push -u origin main
+```
+
+GitHub 저장소 → **Settings → Pages → Build and deployment**: Source `Deploy from a branch`, Branch `main` / `/ (root)` → Save.
+1~2분 뒤 `https://<계정>.github.io/<repo>/` 에서 열린다.
+
+배포 URL 이 정해지면 `index.html` 의 `og:url`, `og:image` 와 이 README 의 `SITE_URL` 을 실제 주소로 바꾼다
+(카카오톡 미리보기는 og:image 가 **절대 URL** 이어야 뜬다). 카카오톡 캐시 갱신: https://developers.kakao.com/tool/debugger/sharing
+
+## 완료 기준 체크리스트
+
+- [x] Projects 12 / Parameter 11 / 개인 작품 6 / 교육·수료 9 / 수상 2 (`build_data.py` 검증)
+- [x] 이미지 없는 항목 placeholder 표시
+- [x] 필터·모달·라이트박스 키보드(Tab, Enter, ESC, ←/→) 동작
+- [x] YouTube 는 첫 로딩 때 요청 0건 (클릭 시 youtube-nocookie iframe)
+- [x] 반응형 1열(≤640px) / 2열 / 3열(≥1024px)
+- [x] Lighthouse (로컬): Performance 99~100 · Accessibility 100 · Best Practices 100 · SEO 63(noindex 때문)
+- [ ] Featured 3건 STAR 내용 작성
+- [ ] 원본 이미지 저장 후 `convert_webp.py` 실행
+- [ ] GitHub Pages 배포 · OG URL 교체 · 휴대폰 실기기 확인 · 카카오톡 미리보기 확인

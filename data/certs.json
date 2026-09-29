@@ -1,0 +1,84 @@
+{
+  "training": [
+    {
+      "id": "cert-solidworks-basic",
+      "title": "Solidworks 기초 수료",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/cert-solidworks-basic-1.jpg"
+    },
+    {
+      "id": "cert-solidworks-practical",
+      "title": "Solidworks 실무 수료",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/cert-solidworks-practical-1.jpg"
+    },
+    {
+      "id": "cert-solidworks-advanced",
+      "title": "Solidworks 심화 수료",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/cert-solidworks-advanced-1.jpg"
+    },
+    {
+      "id": "cert-cfx",
+      "title": "시뮬레이션 전문인력 기술교육 수료 (CFX)",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/cert-cfx-1.jpg"
+    },
+    {
+      "id": "cert-cimatron",
+      "title": "Cimatron CAD (모델링) 교육과정 수료",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/cert-cimatron-1.jpg"
+    },
+    {
+      "id": "cert-lpbf",
+      "title": "금속적층제조(LPBF) 과정 수료",
+      "issuer": "항공우주산학융합원",
+      "date": "",
+      "image": "assets/img/cert-lpbf-1.jpg"
+    },
+    {
+      "id": "cert-catia",
+      "title": "CATIA 중급교육 수료",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/cert-catia-1.jpg"
+    },
+    {
+      "id": "cert-machining-practice",
+      "title": "기계공작실습(선반, CNC 밀링머신) 수료",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/cert-machining-practice-1.jpg"
+    },
+    {
+      "id": "cert-english-philippines",
+      "title": "필리핀 영어연수 수료",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/cert-english-philippines-1.jpg"
+    }
+  ],
+  "awards": [
+    {
+      "id": "award-ml-competition",
+      "title": "머신러닝 교육 내 대회 최우수",
+      "issuer": "",
+      "date": "",
+      "image": "assets/img/award-ml-competition-1.jpg"
+    },
+    {
+      "id": "award-capstone",
+      "title": "한국기계가공학회 캡스톤 경진대회 우수",
+      "issuer": "한국기계가공학회",
+      "date": "",
+      "image": "assets/img/award-capstone-1.jpg"
+    }
+  ],
+  "note": "성적·졸업·병적증명서 등 증빙 서류는 요청 시 제출 가능합니다."
+}

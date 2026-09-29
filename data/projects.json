@@ -1,0 +1,249 @@
+[
+  {
+    "id": "engine-pump",
+    "title": "1단 엔진 펌프 제작",
+    "category": "project",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "발사체",
+      "엔진"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/engine-pump-1.jpg"
+    ],
+    "youtube": "cMbEMA-L-oM",
+    "nda": false,
+    "featured": false,
+    "poster": "assets/img/engine-pump-yt.webp"
+  },
+  {
+    "id": "methane-engine",
+    "title": "메탄엔진 제작",
+    "category": "project",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "발사체",
+      "엔진"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/methane-engine-1.jpg"
+    ],
+    "youtube": "eHwropzkRDI",
+    "nda": false,
+    "featured": false,
+    "poster": "assets/img/methane-engine-yt.webp"
+  },
+  {
+    "id": "release-nozzle",
+    "title": "Release nozzle 제작",
+    "category": "project",
+    "period": "",
+    "tags": [
+      "LPBF"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/release-nozzle-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "motor-heatsink",
+    "title": "Motor heatsink 제작",
+    "category": "project",
+    "period": "",
+    "tags": [
+      "LPBF"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/motor-heatsink-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "manifold-norway",
+    "title": "노르웨이 K사 조선부품 매니폴드 DfAM 및 제작",
+    "category": "project",
+    "period": "2023.10 ~ 2025.05",
+    "tags": [
+      "DfAM",
+      "LPBF",
+      "조선"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/manifold-norway-1.jpg"
+    ],
+    "youtube": "",
+    "nda": true,
+    "featured": true,
+    "featuredOrder": 1,
+    "ndaNote": "NDA로 인해 대체 이미지 첨부",
+    "featuredReason": "조선 분야 직접 경험"
+  },
+  {
+    "id": "gas-generator",
+    "title": "가스발생기 제작",
+    "category": "project",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "발사체",
+      "엔진"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/gas-generator-1.jpg"
+    ],
+    "youtube": "yZCzd_9a3mg",
+    "nda": false,
+    "featured": true,
+    "poster": "assets/img/gas-generator-yt.webp",
+    "featuredOrder": 2,
+    "featuredReason": "엔진 · 연소 부품 제작 경험"
+  },
+  {
+    "id": "metal-expo-2025",
+    "title": "금속산업대전 2025",
+    "category": "project",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "전시"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/metal-expo-2025-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "jip-program-workshop",
+    "title": "2nd Workshop JIP ProGRAM Phase3",
+    "category": "project",
+    "period": "2022.12 ~ 2024.12",
+    "tags": [
+      "LPBF",
+      "JIP"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/jip-program-workshop-1.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  },
+  {
+    "id": "sulzer-impeller",
+    "title": "Sulzer Closed Impeller 제작 (JIP Phase 3)",
+    "category": "project",
+    "period": "2022.12 ~ 2024.12",
+    "tags": [
+      "LPBF",
+      "JIP",
+      "해외협업"
+    ],
+    "summary": "JIP Phase 3 프로젝트 참여 시 제작한 Sulzer 社 Closed Impeller",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/sulzer-impeller-1.jpg",
+      "assets/img/sulzer-impeller-2.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": true,
+    "featuredOrder": 3,
+    "featuredReason": "해외 산업 파트너와의 공동 프로젝트"
+  },
+  {
+    "id": "methane-engine-build",
+    "title": "메탄 엔진 제작",
+    "category": "project",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "발사체",
+      "엔진"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/methane-engine-build-1.jpg"
+    ],
+    "youtube": "TZzPeMG_ouQ",
+    "nda": false,
+    "featured": false,
+    "poster": "assets/img/methane-engine-build-yt.webp"
+  },
+  {
+    "id": "launch-vehicle-u",
+    "title": "국내 U사 발사체 부품 제조",
+    "category": "project",
+    "period": "2022.11 ~ 2025.05",
+    "tags": [
+      "LPBF",
+      "발사체"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/launch-vehicle-u-1.jpg"
+    ],
+    "youtube": "58xU6Pumy18",
+    "nda": true,
+    "featured": false,
+    "poster": "assets/img/launch-vehicle-u-yt.webp",
+    "ndaNote": "NDA로 인해 관련 고객사 공개 사진 첨부"
+  },
+  {
+    "id": "lpbf-filter-maintenance",
+    "title": "LPBF 장비 필터 유지보수 작업",
+    "category": "project",
+    "period": "",
+    "tags": [
+      "LPBF",
+      "장비"
+    ],
+    "summary": "TODO",
+    "role": "TODO",
+    "result": "TODO",
+    "images": [
+      "assets/img/lpbf-filter-maintenance-1.jpg",
+      "assets/img/lpbf-filter-maintenance-2.jpg"
+    ],
+    "youtube": "",
+    "nda": false,
+    "featured": false
+  }
+]

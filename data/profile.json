@@ -1,0 +1,22 @@
+{
+  "name": "장선도",
+  "nameEn": "Seondo Jang",
+  "role": "공정기술 엔지니어",
+  "roleEn": "Process Engineer · Metal Additive Manufacturing",
+  "target": "For Hanwha Engine",
+  "tagline": "LPBF 공정 파라미터 개발부터 조선·발사체 부품 양산까지 해 본 공정기술 엔지니어",
+  "keywords": [
+    "LPBF",
+    "DfAM",
+    "공정 파라미터"
+  ],
+  "career": {
+    "label": "산업 프로젝트 경력",
+    "start": "2022.11",
+    "end": "2025.05"
+  },
+  "email": "eoskan96@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/seondo-jang-me/",
+  "resume": "",
+  "contactMessage": "LPBF 공정 개발 · DfAM · 부품 양산 경험을 한화엔진의 엔진 부품 제조에 연결하고 싶습니다. 편하게 연락 주세요."
+}

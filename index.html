@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko" class="is-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>장선도 | 공정기술 엔지니어 포트폴리오</title>
+  <meta name="description" content="LPBF 공정 파라미터 개발부터 조선·발사체 부품 양산까지 해 본 공정기술 엔지니어 장선도의 포트폴리오입니다.">
+  <!-- 검색 노출: 비공개(링크 공유 전용). 검색에 노출하려면 아래 줄을 삭제 -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0b1320">
+
+  <!-- Open Graph (카카오톡·메일 링크 미리보기) — SITE_URL 은 배포 주소로 교체 -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="장선도 포트폴리오">
+  <meta property="og:title" content="장선도 | 공정기술 엔지니어 포트폴리오">
+  <meta property="og:description" content="LPBF 공정 파라미터 개발부터 조선·발사체 부품 양산까지 — 프로젝트 12건 · 파라미터 연구 11건">
+  <meta property="og:url" content="https://SITE_URL/">
+  <meta property="og:image" content="https://SITE_URL/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="장선도 공정기술 엔지니어 포트폴리오 — LPBF · DfAM · 공정 파라미터">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#hero" id="brand">Portfolio</a>
+      <nav class="site-nav" aria-label="섹션 이동">
+        <ul>
+          <li><a href="#featured">Featured</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#parameters">Parameter</a></li>
+          <li><a href="#certs">자격사항</a></li>
+          <li><a href="#personal">개인 작품</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section id="hero" class="hero" aria-labelledby="hero-name">
+      <div class="container" id="hero-content"></div>
+    </section>
+
+    <section id="featured" class="section section-featured" aria-labelledby="featured-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">01 · Featured</p>
+          <h2 id="featured-title">한화엔진과 맞닿은 프로젝트</h2>
+          <p class="section-desc">조선 · 엔진 · 해외 산업 파트너 협업 — 연관성이 높은 순서로 3건을 먼저 소개합니다.</p>
+        </header>
+        <div class="featured-grid" id="featured-list"></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section" aria-labelledby="projects-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">02 · Projects</p>
+          <h2 id="projects-title">Projects <span class="count" id="projects-count"></span></h2>
+          <p class="section-desc">카드를 선택하면 문제 → 접근 → 결과와 사진·영상을 볼 수 있습니다.</p>
+        </header>
+        <div class="filter-bar" role="group" aria-label="태그 필터" id="filter-bar"></div>
+        <p class="filter-status" id="filter-status" aria-live="polite"></p>
+        <div class="card-grid" id="projects-list"></div>
+      </div>
+    </section>
+
+    <section id="parameters" class="section section-alt" aria-labelledby="parameters-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">03 · Parameter Development</p>
+          <h2 id="parameters-title">Parameter Development <span class="count" id="parameters-count"></span></h2>
+          <p class="section-desc">LPBF 공정 조건 · 서포트 · 툴패스 연구</p>
+        </header>
+        <div class="card-grid" id="parameters-list"></div>
+      </div>
+    </section>
+
+    <section id="certs" class="section" aria-labelledby="certs-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">04 · Certifications</p>
+          <h2 id="certs-title">자격사항</h2>
+        </header>
+        <div class="certs" id="certs-content"></div>
+      </div>
+    </section>
+
+    <section id="personal" class="section section-alt" aria-labelledby="personal-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-kicker">05 · Personal Works</p>
+          <h2 id="personal-title">개인 작품 <span class="count" id="personal-count"></span></h2>
+          <p class="section-desc">Lattice · Computational design · 제작 실습</p>
+        </header>
+        <div class="card-grid" id="personal-list"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-contact" aria-labelledby="contact-title">
+      <div class="container" id="contact-content">
+        <header class="section-head">
+          <p class="section-kicker">06 · Contact</p>
+          <h2 id="contact-title">Contact</h2>
+        </header>
+      </div>
+    </section>
+
+    <noscript><p class="container load-error">이 포트폴리오는 JavaScript가 필요합니다.</p></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" id="footer-content"></div>
+  </footer>
+
+  <dialog class="modal" id="detail-modal" aria-labelledby="modal-title">
+    <div class="modal-inner" id="modal-body"></div>
+  </dialog>
+
+  <dialog class="lightbox" id="lightbox" aria-label="이미지 확대 보기">
+    <div class="lightbox-inner" id="lightbox-body"></div>
+  </dialog>
+</body>
+</html>
