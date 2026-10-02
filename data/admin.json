@@ -1,0 +1,10 @@
+{
+  "repo": "pycode1094/sundojang",
+  "branch": "main",
+  "password": {
+    "algorithm": "PBKDF2-SHA256",
+    "iterations": 150000,
+    "salt": "2432dc45c1bc9b15d8415723788e038d",
+    "hash": "b28aaddf03787e2c5b59c7183795b0f3290d48cee03890e048c2f50632371b32"
+  }
+}
