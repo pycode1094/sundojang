@@ -88,7 +88,11 @@ def main():
     images = existing_images()
 
     (DATA / "images.json").write_text(json.dumps(images, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    bundle = dict(data, images=images)
+    bundle = dict(data)
+    admin = DATA / "admin.json"  # 관리자 설정 (관리자 페이지에서 비밀번호를 정하면 생성됨)
+    if admin.exists():
+        bundle["admin"] = json.loads(admin.read_text(encoding="utf-8"))
+    bundle["images"] = images
     (DATA / "bundle.js").write_text(
         "// 자동 생성 파일 — 직접 수정하지 말고 data/*.json 수정 후 python scripts/build_data.py 실행\n"
         f"window.PORTFOLIO_DATA = {json.dumps(bundle, ensure_ascii=False)};\n",

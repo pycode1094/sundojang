@@ -14,6 +14,7 @@ const state = {
   images: null, // Set of existing image paths (data/images.json) — null 이면 onerror 로 처리
   byId: new Map(),
   tag: null,
+  blobUrls: new Map(), // 관리자 모드에서 업로드했지만 아직 게시 전인 이미지: 경로 → blob URL
 };
 
 /* ---------- DOM helpers ---------- */
@@ -62,13 +63,13 @@ async function loadData() {
   if (location.protocol === 'file:') return loadBundle();
   const entries = await Promise.all(
     DATA_FILES.map(async (name) => {
-      const res = await fetch(`data/${name}.json`);
+      const res = await fetch(`data/${name}.json`, { cache: 'no-cache' });
       if (!res.ok) throw new Error(`data/${name}.json → ${res.status}`);
       return [name, await res.json()];
     })
   );
   const data = Object.fromEntries(entries);
-  data.images = await fetch('data/images.json')
+  data.images = await fetch('data/images.json', { cache: 'no-cache' })
     .then((r) => (r.ok ? r.json() : null))
     .catch(() => null);
   return data;
@@ -88,6 +89,9 @@ function loadBundle() {
 /* ---------- Images ---------- */
 
 const hasImage = (path) => !!path && (!state.images || state.images.has(path));
+
+/** 게시 전 업로드 이미지는 blob URL 로 미리보기 */
+const resolveSrc = (path) => state.blobUrls.get(path) || path;
 
 /** WebP 변환본이 있으면 카드용 썸네일(.thumb.webp)을 우선 사용 */
 function thumbCandidates(path) {
@@ -119,10 +123,10 @@ function mediaFrame(candidates, { alt, label, nda, eager = false } = {}) {
   const img = h('img', { alt, loading: eager ? 'eager' : 'lazy', decoding: 'async' });
   img.addEventListener('error', () => {
     index += 1;
-    if (index < candidates.length) img.src = candidates[index];
+    if (index < candidates.length) img.src = resolveSrc(candidates[index]);
     else img.replaceWith(placeholder(label, nda));
   });
-  img.src = candidates[0];
+  img.src = resolveSrc(candidates[0]);
   frame.append(img);
   return frame;
 }
@@ -190,7 +194,7 @@ function renderHero({ profile, projects, parameters }) {
         h('div', { class: 'hero-actions' },
           h('a', { class: 'btn btn-primary', href: '#featured' }, '대표 프로젝트 보기', icon('arrow')),
           h('a', { class: 'btn', href: '#contact' }, '연락하기'),
-          isFilled(profile.resume) && h('a', { class: 'btn', href: profile.resume, download: '' }, icon('download'), '이력서 PDF')
+          isFilled(profile.resume) && h('a', { class: 'btn', href: resolveSrc(profile.resume), download: '' }, icon('download'), '이력서 PDF')
         )
       ),
       heroVisual()
@@ -217,7 +221,7 @@ function renderFeatured(items) {
         ['A', item.role],
         ['R', item.result],
       ].filter(([, v]) => isFilled(v));
-      return h('article', { class: 'feature' },
+      return h('article', { class: 'feature', 'data-id': item.id },
         h('div', { style: 'position:relative' },
           badges(item),
           mediaFrame(cardCandidates(item), { alt: `${item.title} 대표 이미지`, label: item.nda ? 'NDA · 이미지 비공개' : '이미지 준비 중', nda: item.nda, eager: idx === 0 })
@@ -242,7 +246,7 @@ function renderFeatured(items) {
 /* ---------- Cards ---------- */
 
 function card(item) {
-  return h('article', { class: 'card', 'data-id': item.id, 'data-tags': item.tags.join('|') },
+  return h('article', { class: 'card', 'data-id': item.id, 'data-tags': (item.tags || []).join('|') },
     h('div', { style: 'position:relative' },
       badges(item, { featured: item.featured }),
       mediaFrame(cardCandidates(item), { alt: `${item.title} 대표 이미지`, label: item.nda ? 'NDA · 이미지 비공개' : '이미지 준비 중', nda: item.nda })
@@ -283,7 +287,7 @@ function updateCount(section) {
 
 function renderFilter() {
   const all = WORK_SECTIONS.flatMap((s) => state.data[s]);
-  const countOf = (tag) => all.filter((i) => i.tags.includes(tag)).length;
+  const countOf = (tag) => all.filter((i) => (i.tags || []).includes(tag)).length;
   const chip = (tag, label) =>
     h('button', { class: 'chip', type: 'button', 'data-tag': tag ?? '', 'aria-pressed': String(state.tag === tag), onclick: () => applyFilter(tag) },
       label,
@@ -294,6 +298,11 @@ function renderFilter() {
 
 function applyFilter(tag) {
   state.tag = state.tag === tag ? null : tag;
+  syncFilter();
+}
+
+/** 현재 state.tag 를 카드 · 칩 · 카운트에 반영 */
+function syncFilter() {
   document.querySelectorAll('#filter-bar .chip').forEach((c) => {
     c.setAttribute('aria-pressed', String((c.dataset.tag || null) === state.tag));
   });
@@ -325,7 +334,7 @@ function renderCerts({ training, awards, note }) {
       ? h('button', { class: 'cert-thumb', type: 'button', 'aria-label': `${c.title} 증서 이미지 크게 보기`, onclick: (e) => openLightbox([{ src: full[0], alt: `${c.title} 증서`, caption: c.title }], 0, e.currentTarget) },
           mediaFrame(src, { alt: '', label: '' }))
       : h('div', { class: 'cert-thumb is-empty' }, placeholder('', false));
-    return h('li', { class: `cert${award ? ' is-award' : ''}` },
+    return h('li', { class: `cert${award ? ' is-award' : ''}`, 'data-id': c.id },
       thumb,
       h('div', {},
         h('p', { class: 'cert-title' }, c.title),
@@ -339,30 +348,34 @@ function renderCerts({ training, awards, note }) {
       h('ul', { class: 'cert-list' }, list.map((c) => certItem(c, award)))
     );
   $('#certs-content').replaceChildren(
-    group('교육 · 수료', training, false),
-    group('수상', awards, true),
-    isFilled(note) && h('p', { class: 'cert-note' }, icon('info'), note)
+    ...[
+      group('교육 · 수료', training, false),
+      group('수상', awards, true),
+      isFilled(note) && h('p', { class: 'cert-note' }, icon('info'), note),
+    ].filter(Boolean)
   );
 }
 
 /* ---------- Contact / Footer ---------- */
 
 function renderContact(profile) {
-  const container = $('#contact-content');
-  container.append(
-    isFilled(profile.contactMessage) && h('p', { class: 'contact-lead' }, profile.contactMessage),
-    h('div', { class: 'contact-list' },
-      h('a', { class: 'contact-item', href: `mailto:${profile.email}` },
-        icon('mail'), h('span', {}, h('small', {}, 'E-mail'), h('strong', {}, profile.email))),
-      h('a', { class: 'contact-item', href: profile.linkedin, target: '_blank', rel: 'noopener noreferrer' },
-        icon('linkedin'), h('span', {}, h('small', {}, 'LinkedIn (새 창)'), h('strong', {}, profile.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))))
-    ),
-    isFilled(profile.resume) &&
-      h('div', { class: 'contact-actions' }, h('a', { class: 'btn btn-primary', href: profile.resume, download: '' }, icon('download'), '이력서 PDF 다운로드'))
+  $('#contact-body').replaceChildren(
+    ...[
+      isFilled(profile.contactMessage) && h('p', { class: 'contact-lead' }, profile.contactMessage),
+      h('div', { class: 'contact-list' },
+        h('a', { class: 'contact-item', href: `mailto:${profile.email}` },
+          icon('mail'), h('span', {}, h('small', {}, 'E-mail'), h('strong', {}, profile.email))),
+        h('a', { class: 'contact-item', href: profile.linkedin, target: '_blank', rel: 'noopener noreferrer' },
+          icon('linkedin'), h('span', {}, h('small', {}, 'LinkedIn (새 창)'), h('strong', {}, String(profile.linkedin).replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))))
+      ),
+      isFilled(profile.resume) &&
+        h('div', { class: 'contact-actions' }, h('a', { class: 'btn btn-primary', href: resolveSrc(profile.resume), download: '' }, icon('download'), '이력서 PDF 다운로드')),
+    ].filter(Boolean)
   );
   $('#footer-content').replaceChildren(
     h('span', {}, `© ${new Date().getFullYear()} ${profile.name} (${profile.nameEn})`),
-    h('span', {}, `${profile.role} · ${profile.keywords.join(' · ')}`)
+    h('span', {}, `${profile.role} · ${profile.keywords.join(' · ')}`),
+    h('button', { class: 'admin-entry', type: 'button', onclick: openAdmin }, '관리자')
   );
 }
 
@@ -422,12 +435,12 @@ function buildSlider(item) {
     let content;
     if (s.type === 'video') {
       content = h('button', { class: 'yt-poster', type: 'button', 'aria-label': `${item.title} 영상 재생 (YouTube)`, onclick: (e) => loadYouTube(e.currentTarget, s.id, item.title) },
-        h('img', { src: s.poster, alt: '', loading: 'lazy', decoding: 'async' }),
+        h('img', { src: resolveSrc(s.poster), alt: '', loading: 'lazy', decoding: 'async' }),
         h('span', { class: 'yt-play' }, h('span', {}, icon('play'), 'YouTube 영상 재생'))
       );
     } else if (s.type === 'image') {
       content = h('button', { class: 'slide-zoom', type: 'button', 'aria-label': `이미지 ${s.index + 1} 크게 보기`, onclick: (e) => openLightbox(lightboxItems, s.index, e.currentTarget) },
-        h('img', { src: s.src, alt: `${item.title} 이미지 ${s.index + 1}`, loading: 'lazy', decoding: 'async' })
+        h('img', { src: resolveSrc(s.src), alt: `${item.title} 이미지 ${s.index + 1}`, loading: 'lazy', decoding: 'async' })
       );
     } else {
       content = placeholder(item.nda ? 'NDA · 이미지 비공개' : '이미지 준비 중', item.nda);
@@ -496,7 +509,7 @@ function renderLightbox() {
   const multi = lb.items.length > 1;
   $('#lightbox-body').replaceChildren(
     h('button', { class: 'lightbox-close', type: 'button', 'aria-label': '확대 보기 닫기', onclick: () => lightbox().close() }, icon('close')),
-    h('figure', { class: 'lightbox-figure' }, h('img', { src: it.src, alt: it.alt })),
+    h('figure', { class: 'lightbox-figure' }, h('img', { src: resolveSrc(it.src), alt: it.alt })),
     h('div', { class: 'lightbox-bar' },
       multi && h('button', { class: 'slider-btn', type: 'button', 'aria-label': '이전 이미지', onclick: () => stepLightbox(-1) }, icon('prev')),
       h('p', { class: 'lightbox-caption', 'aria-live': 'polite' }, it.caption),
@@ -582,6 +595,38 @@ function setupNav() {
   }, { passive: true });
 }
 
+/* ---------- Render all / Admin ---------- */
+
+/** state.data 전체를 다시 그린다 (관리자 모드에서 수정 후에도 호출) */
+function renderAll() {
+  const data = state.data;
+  state.byId = new Map(WORK_SECTIONS.flatMap((s) => data[s].map((item) => [item.id, item])));
+  renderHero(data);
+  renderFeatured(WORK_SECTIONS.flatMap((s) => data[s]));
+  renderFilter();
+  WORK_SECTIONS.forEach((s) => renderGrid(s, data[s]));
+  syncFilter();
+  renderCerts(data.certs);
+  renderContact(data.profile);
+  document.dispatchEvent(new CustomEvent('portfolio:rendered'));
+}
+
+/** 관리자 기능은 방문자에게 불필요하므로 버튼을 눌렀을 때만 js/admin.js · css/admin.css 를 불러온다 */
+let adminLoading = null;
+function openAdmin() {
+  adminLoading ??= new Promise((resolve, reject) => {
+    document.head.append(h('link', { rel: 'stylesheet', href: 'css/admin.css' }));
+    const script = h('script', { src: 'js/admin.js' });
+    script.onload = resolve;
+    script.onerror = () => {
+      adminLoading = null;
+      reject(new Error('js/admin.js 를 불러오지 못했습니다.'));
+    };
+    document.head.append(script);
+  });
+  adminLoading.then(() => window.Admin.open()).catch((err) => alert(err.message));
+}
+
 /* ---------- Init ---------- */
 
 async function init() {
@@ -589,18 +634,13 @@ async function init() {
     const data = await loadData();
     state.data = data;
     state.images = Array.isArray(data.images) ? new Set(data.images) : null;
-    for (const s of WORK_SECTIONS) data[s].forEach((item) => state.byId.set(item.id, item));
 
-    renderHero(data);
-    renderFeatured([...data.projects, ...data.parameters, ...data.personal]);
-    renderFilter();
-    WORK_SECTIONS.forEach((s) => renderGrid(s, data[s]));
-    renderCerts(data.certs);
-    renderContact(data.profile);
+    renderAll();
     document.documentElement.classList.remove('is-loading');
     if (location.hash) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
     setupDialogs();
     setupNav();
+    if (location.hash === '#admin' || sessionStorageGet('portfolio-admin') === '1') openAdmin();
   } catch (err) {
     document.documentElement.classList.remove('is-loading');
     console.error(err);
@@ -608,6 +648,14 @@ async function init() {
       h('p', { class: 'container load-error', role: 'alert' },
         '콘텐츠를 불러오지 못했습니다. 로컬에서는 `python -m http.server` 로 실행하거나 `python scripts/build_data.py` 로 data/bundle.js 를 생성하세요.')
     );
+  }
+}
+
+function sessionStorageGet(key) {
+  try {
+    return sessionStorage.getItem(key);
+  } catch {
+    return null;
   }
 }
 
